@@ -23,3 +23,31 @@ Andrés López
 
 And that's it!
 
+== Integrating pull request GitHub plugin (GHPR)
+
+. Login in link:https://dcip.hi.inet/[EPG Jenkins] and create a personal folder.
+. Access that new created folder and create a `New Item > Freestyle project`, and set a name for the job.
+. Configure the job:
+.. Check `General > Github project` and set your project url.
+.. Check `Source Code Management > Git`:
+... Set your repository URL.
+... Add `contint/****** (GITHUB only user)` credentials.
+... Click on `Advanced`:
+.... Set repository name, (i.e., `origin`)
+.... Set pull requests refspec: `+refs/pull/*:refs/remotes/origin/pr/*` (change `origin` by chosen repository name)
+... Set the branch to track: `${sha1}`.
+... Add `githubweb` repository browser and project `URL`.
+.. Check `Build Triggers > GitHub Pull Request Builder`:
+... Set GitHub API credentials: `https://api.github.com : contint Token`
+... Add `Admin list` repository users (GitHub users, not Telefónica users!).
+... Check `Use github hooks for build triggering`.
+... If desired, add a `Trigger phrase` (i.e., `Rebuild this project, oh lord master`, or `:hammer:`).
+... Add `White list` repository users (users for which this trigger will be run).
+.. Check `Build > Execute shell` and add a simple command, for example: `echo "Hello world!`.
+.. Save changes.
+. Configure your repository:
+.. Go to `Settings > Webhooks` and click on `Add webhook`:
+... Add Jenkins Payload URL: `http://dcip.tid.es/ghprbhook/`
+... Click on `Add webhook`.
+
+And we are done!
