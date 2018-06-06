@@ -48,6 +48,9 @@ And that's it!
 . Configure your repository:
 .. Go to `Settings > Webhooks` and click on `Add webhook`:
 ... Add Jenkins Payload URL: `http://dcip.tid.es/ghprbhook/`
+... Click on `Let me select individual events`:
+.... Check `Issue comments` (for phrase triggering)
+.... Check `Pull requests` (for proper pull request triggering)
 ... Click on `Add webhook`.
 
 And we are done!
