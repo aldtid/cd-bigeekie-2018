@@ -1,2 +1,25 @@
 = Continuous Delivery
+Andrés López
+:toc:
+
+== Steps to create a job in Jenkins
+
+. Login in link:https://dcip.hi.inet/[EPG Jenkins] and create a personal folder.
+. Access that new created folder and create a `New Item > Freestyle project`, and set a name for the job.
+. Configure the job:
+.. Check `General > Github project` and set your project url.
+.. Check `Source Code Management > Git`:
+... Set your repository URL.
+... Add `contint/****** (GITHUB only user)` credentials.
+... Set the branch to track (i.e., to track master it would be `*/master`).
+... Add `githubweb` repository browser and project `URL`.
+.. Check `Build Triggers > GitHub hook trigger for GITScm polling`.
+.. Check `Build > Execute shell` and add a simple command, for example: `echo "Hello world!`.
+.. Save changes.
+. Configure your repository:
+.. Go to `Settings > Webhooks` and click on `Add webhook`:
+... Add Jenkins Payload URL: `http://dcip.tid.es/github-webhook/`
+... Click on `Add webhook`.
+
+And that's it!
 
